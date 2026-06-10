@@ -1,5 +1,66 @@
 /* --- Responsive Layout --- */
 
+/* --- Sidebar toggle buttons (hidden on wide screens) --- */
+.panel-toggle {
+  display: none;
+  position: fixed;
+  bottom: 1.5rem;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
+  box-shadow: 0 4px 14px rgba(99, 102, 241, 0.35);
+  cursor: pointer;
+  z-index: 996;
+  transition: transform 200ms ease;
+}
+
+.panel-toggle:hover {
+  transform: translateY(-2px);
+}
+
+.panel-toggle i {
+  color: #fff;
+  font-size: 1.3rem;
+}
+
+#left-toggle {
+  left: 1.5rem;
+}
+
+#right-toggle {
+  right: 1.5rem;
+}
+
+#panel-backdrop {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(30, 27, 75, 0.3);
+  z-index: 997;
+}
+
+@keyframes drawer-in-left {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes drawer-in-right {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+/* --- 1000px ~ 1200px: hide left sidebar --- */
 @media (1000px <= width <= 1200px) {
   .main-left {
     display: none;
@@ -10,6 +71,7 @@
   }
 }
 
+/* --- < 1000px: keep only the middle feed --- */
 @media (width < 1000px) {
   .main-left,
   .main-right {
@@ -22,5 +84,53 @@
 
   .container {
     width: 92%;
+  }
+
+  #right-toggle {
+    display: flex;
+  }
+
+  /* Right sidebar as a slide-in drawer */
+  body.show-right .main-right {
+    display: flex;
+    position: fixed;
+    right: 0;
+    top: 5.4rem;
+    height: calc(100vh - 5.4rem);
+    width: min(320px, 85vw);
+    padding: 1rem;
+    overflow-y: auto;
+    background: var(--color-white);
+    box-shadow: -8px 0 32px rgba(30, 27, 75, 0.15);
+    z-index: 998;
+    animation: drawer-in-right 250ms ease;
+  }
+}
+
+/* --- <= 1200px: left sidebar as a slide-in drawer --- */
+@media (width <= 1200px) {
+  #left-toggle {
+    display: flex;
+  }
+
+  body.show-left .main-left {
+    display: block;
+    position: fixed;
+    left: 0;
+    top: 5.4rem;
+    height: calc(100vh - 5.4rem);
+    width: min(300px, 85vw);
+    min-width: 0;
+    padding: 1rem;
+    overflow-y: auto;
+    background: var(--color-white);
+    box-shadow: 8px 0 32px rgba(30, 27, 75, 0.15);
+    z-index: 998;
+    animation: drawer-in-left 250ms ease;
+  }
+
+  body.show-left #panel-backdrop,
+  body.show-right #panel-backdrop {
+    display: block;
   }
 }

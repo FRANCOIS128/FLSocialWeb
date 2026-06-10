@@ -1,6 +1,7 @@
 import "./index.css"
 import { profile } from './data/db.json'
 import { initAuth } from '@/js/auth/auth.js'
+import { initPanelToggle } from '@/js/panelToggle.js'
 
 import {
   navbar_container_logo,
@@ -37,3 +38,4 @@ right_message.appendChild(right_friendList)
 right_message.appendChild(right_requestList)
 
 initAuth()
+initPanelToggle()
