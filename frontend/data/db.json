@@ -1,0 +1,286 @@
+{
+  "profile": {
+    "name": "Francois Li",
+    "at": "@Full Stack Developer",
+    "img_src": "/images/profile/profile_1.png"
+  },
+  "sidebar": [
+    {
+      "id": 1,
+      "name": "Home",
+      "icon_class_list": [
+        "uil",
+        "uil-house-user"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Explore",
+      "icon_class_list": [
+        "uil",
+        "uil-compass"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Notifications",
+      "icon_class_list": [
+        "uil",
+        "uil-bell"
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Messages",
+      "icon_class_list": [
+        "uil",
+        "uil-envelope-alt"
+      ]
+    },
+    {
+      "id": 5,
+      "name": "Bookmarks",
+      "icon_class_list": [
+        "uil",
+        "uil-bookmark"
+      ]
+    },
+    {
+      "id": 6,
+      "name": "Analytics",
+      "icon_class_list": [
+        "uil",
+        "uil-chart-line"
+      ]
+    },
+    {
+      "id": 7,
+      "name": "Theme",
+      "icon_class_list": [
+        "uil",
+        "uil-palette"
+      ]
+    },
+    {
+      "id": 8,
+      "name": "Settings",
+      "icon_class_list": [
+        "uil",
+        "uil-setting"
+      ]
+    }
+  ],
+  "highline": [
+    {
+      "id": 1,
+      "title": "Your Stories",
+      "background": "/images/highline/highline_1.jpeg",
+      "img_src": "/images/profile/profile_2.png"
+    },
+    {
+      "id": 2,
+      "title": "Your View",
+      "background": "/images/highline/highline_2.jpeg",
+      "img_src": "/images/profile/profile_3.png"
+    },
+    {
+      "id": 3,
+      "title": "Your Emotion",
+      "background": "/images/highline/highline_3.jpeg",
+      "img_src": "/images/profile/profile_4.png"
+    },
+    {
+      "id": 4,
+      "title": "Your Opinion",
+      "background": "/images/highline/highline_4.jpeg",
+      "img_src": "/images/profile/profile_5.png"
+    },
+    {
+      "id": 5,
+      "title": "Your Feeling",
+      "background": "/images/highline/highline_5.jpeg",
+      "img_src": "/images/profile/profile_6.png"
+    },
+    {
+      "id": 6,
+      "title": "Your Love",
+      "background": "/images/highline/highline_6.jpeg",
+      "img_src": "/images/profile/profile_7.png"
+    }
+  ],
+  "cards": [
+    {
+      "id": 1,
+      "profile": {
+        "src": "/images/profile/profile_2.png",
+        "name": "Lana Rose",
+        "position": "Somewhere",
+        "time": "15 MINUTES AGO"
+      },
+      "picture": {
+        "img_src": "/images/post/post_5.jpeg"
+      },
+      "comment": {
+        "img_src_list": [
+          "/images/profile/profile_5.png",
+          "/images/profile/profile_6.png",
+          "/images/profile/profile_7.png"
+        ],
+        "first_people_name": "Ernest Achiever",
+        "like_peoples_number": 2323,
+        "comment_info": "Lana Rose Lorem ipsum dolor sit quisquam eius. #lifestyle",
+        "view_number": 3473
+      }
+    },
+    {
+      "id": 2,
+      "profile": {
+        "src": "/images/profile/profile_3.png",
+        "name": "Lana Rose",
+        "position": "Somewhere",
+        "time": "15 MINUTES AGO"
+      },
+      "picture": {
+        "img_src": "/images/post/post_6.jpeg"
+      },
+      "comment": {
+        "img_src_list": [
+          "/images/profile/profile_5.png",
+          "/images/profile/profile_6.png",
+          "/images/profile/profile_7.png"
+        ],
+        "first_people_name": "Ernest Achiever",
+        "like_peoples_number": 2323,
+        "comment_info": "Lana Rose Lorem ipsum dolor sit quisquam eius. #lifestyle",
+        "view_number": 3473
+      }
+    },
+    {
+      "id": 3,
+      "profile": {
+        "src": "/images/profile/profile_4.png",
+        "name": "Lana Rose",
+        "position": "Somewhere",
+        "time": "15 MINUTES AGO"
+      },
+      "picture": {
+        "img_src": "/images/post/post_7.jpeg"
+      },
+      "comment": {
+        "img_src_list": [
+          "/images/profile/profile_5.png",
+          "/images/profile/profile_6.png",
+          "/images/profile/profile_7.png"
+        ],
+        "first_people_name": "Ernest Achiever",
+        "like_peoples_number": 2323,
+        "comment_info": "Lana Rose Lorem ipsum dolor sit quisquam eius. #lifestyle",
+        "view_number": 3473
+      }
+    },
+    {
+      "id": 4,
+      "profile": {
+        "src": "/images/profile/profile_5.png",
+        "name": "Lana Rose",
+        "position": "Somewhere",
+        "time": "15 MINUTES AGO"
+      },
+      "picture": {
+        "img_src": "/images/post/post_8.jpeg"
+      },
+      "comment": {
+        "img_src_list": [
+          "/images/profile/profile_5.png",
+          "/images/profile/profile_6.png",
+          "/images/profile/profile_7.png"
+        ],
+        "first_people_name": "Ernest Achiever",
+        "like_peoples_number": 2323,
+        "comment_info": "Lana Rose Lorem ipsum dolor sit quisquam eius. #lifestyle",
+        "view_number": 3473
+      }
+    },
+    {
+      "id": 5,
+      "profile": {
+        "src": "/images/profile/profile_7.png",
+        "name": "Lana Rose",
+        "position": "Somewhere",
+        "time": "15 MINUTES AGO"
+      },
+      "picture": {
+        "img_src": "/images/post/post_9.jpeg"
+      },
+      "comment": {
+        "img_src_list": [
+          "/images/profile/profile_5.png",
+          "/images/profile/profile_6.png",
+          "/images/profile/profile_7.png"
+        ],
+        "first_people_name": "Ernest Achiever",
+        "like_peoples_number": 2323,
+        "comment_info": "Lana Rose Lorem ipsum dolor sit quisquam eius. #lifestyle",
+        "view_number": 3473
+      }
+    }
+  ],
+  "message": [
+    {
+      "id": 1,
+      "src": "/images/profile/profile_2.png",
+      "name": "Tomas Li",
+      "msg": "Hi, Long time no see!"
+    },
+    {
+      "id": 2,
+      "src": "/images/profile/profile_3.png",
+      "name": "Lana Rose",
+      "msg": "Birthday Tomorrow!"
+    },
+    {
+      "id": 3,
+      "src": "/images/profile/profile_4.png",
+      "name": "No One",
+      "msg": "lol u right."
+    },
+    {
+      "id": 4,
+      "src": "/images/profile/profile_5.png",
+      "name": "Emily",
+      "msg": "emm, sounds good."
+    },
+    {
+      "id": 5,
+      "src": "/images/profile/profile_6.png",
+      "name": "Alex",
+      "msg": "hang on, give me a sec."
+    }
+  ],
+  "request": [
+    {
+      "id": 1,
+      "src": "/images/profile/profile_7.png",
+      "name": "Hajia Bintu",
+      "mutualFriendNum": 8
+    },
+    {
+      "id": 2,
+      "src": "/images/profile/profile_8.png",
+      "name": "Jackline Mensah",
+      "mutualFriendNum": 19
+    },
+    {
+      "id": 3,
+      "src": "/images/profile/profile_9.png",
+      "name": "Lana Rose",
+      "mutualFriendNum": 12
+    },
+    {
+      "id": 4,
+      "src": "/images/profile/profile_10.png",
+      "name": "Amy",
+      "mutualFriendNum": 34
+    }
+  ]
+}

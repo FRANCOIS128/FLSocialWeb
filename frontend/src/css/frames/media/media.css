@@ -1,0 +1,23 @@
+@media (1000px <= width <= 1200px) {
+  .main-left {
+    display: none;
+  }
+
+  main .container {
+    grid-template-columns: auto 30vw;
+  }
+}
+
+@media (width < 1000px) {
+  .main-left {
+    display: none;
+  }
+
+  .main-right {
+    display: none;
+  }
+
+  main .container {
+    grid-template-columns: auto;
+  }
+}

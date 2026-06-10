@@ -1,0 +1,50 @@
+/* --- Foundation --- */
+:root {
+  --color-white: #fafaff;
+  --color-black: #1e1b4b;
+  --color-gray: #64748b;
+  --color-primary: #6366f1;
+  --color-primary-light: #818cf8;
+  --color-primary-dark: #4f46e5;
+  --color-accent: #f59e0b;
+  --color-background: linear-gradient(135deg, #fafaff 0%, #f8fafc 100%);
+}
+
+html,
+body {
+  /* text-align: center; */
+  width: 100vw;
+  min-height: 100vh;
+  background: var(--color-white);
+  background: var(--color-background);
+}
+
+*,
+*::before,
+*::after {
+  font-family: "Poppins", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: var(--color-black);
+  margin: 0;
+  padding: 0;
+  outline: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  list-style: none;
+  user-select: none;
+  -webkit-user-drag: none;
+  -moz-window-dragging: none;
+  border: none;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+/* --- Common --- */
+.container {
+  width: 80%;
+  max-width: 1920px;
+  margin: 0 auto;
+}

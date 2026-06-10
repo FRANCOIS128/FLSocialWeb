@@ -1,0 +1,23 @@
+/* --- Search --- */
+.search-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-white);
+  padding: 0.7rem 2rem;
+  border-radius: 2rem;
+}
+
+.search-bar input[type="search"] {
+  background: transparent;
+  width: 30vw;
+  max-width: 500px;
+  margin-left: 1rem;
+  font-size: 0.9rem;
+  color: var(--color-black);
+}
+
+.search-bar input[type="search"]::placeholder {
+  color: var(--color-gray);
+  font-style: italic;
+}

@@ -1,0 +1,50 @@
+:root {
+  --middle-highline-padding: 1rem;
+  --middle-highline-border-radius: 1rem;
+}
+
+/* --- Main Middle Highline --- */
+
+.main-middle .highline {
+  display: flex;
+  justify-content: space-between;
+  height: 12rem;
+  gap: 0.5rem;
+}
+
+.main-middle .highline .description {
+  width: 100%;
+  position: relative;
+  padding: var(--middle-highline-padding);
+  border-radius: var(--middle-highline-border-radius);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  overflow: hidden;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  object-fit: cover;
+}
+
+.main-middle .highline .description p {
+  color: #fff;
+  font-size: 0.75rem;
+  z-index: 1;
+}
+
+.main-middle .highline .description .profile-photo {
+  width: 2.2rem;
+  min-width: 2.2rem;
+}
+
+.main-middle .highline .description::before {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 5rem;
+  bottom: 0;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.75));
+}

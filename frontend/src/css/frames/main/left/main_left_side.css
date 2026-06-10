@@ -1,0 +1,30 @@
+/* --- Main Left Side --- */
+.main-left .sidebar {
+  margin-top: 1rem;
+  background: var(--left-profile-background-color);
+  border-radius: var(--left-profile-radius);
+}
+
+.main-left .sidebar .menu-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 4rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.main-left .sidebar .menu-item:hover {
+  background: var(--color-white);
+}
+
+.main-left .sidebar i {
+  position: relative;
+  font-size: 1.4rem;
+  color: var(--color-gray);
+  margin-left: 2rem;
+}
+
+.main-left .sidebar h2 {
+  margin-left: 1.5rem;
+}

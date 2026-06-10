@@ -1,0 +1,76 @@
+/* --- Main Middle Card --- */
+
+:root {
+  --color-mark: #e4c300;
+}
+
+.info {
+  background: #fff;
+  margin: 1rem 0;
+  border-radius: 1rem;
+  padding: 1rem;
+}
+
+.info-profile {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0.4rem 0.1rem;
+}
+
+.info-profile .profile {
+  padding: 0;
+}
+
+.info-profile i {
+  cursor: pointer;
+}
+
+.info-picture img {
+  border-radius: 0.5rem;
+}
+
+.info-control {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem;
+
+  font-size: 1.5rem;
+}
+
+.info-control .main-control {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.info-control .main-control i::before {
+  color: var(--color-primary);
+}
+
+.info-control .main-control i:hover::before {
+  color: var(--color-mark);
+}
+
+.info-control>i:before {
+  color: var(--color-mark);
+}
+
+.info-control>i:hover::before {
+  color: var(--color-primary);
+}
+
+.info-comment {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  font-size: small;
+}
+
+.view-btn {
+  color: var(--color-gray);
+  cursor: pointer;
+}
+
+.view-btn:hover {
+  color: var(--color-primary);
+}

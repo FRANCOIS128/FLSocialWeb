@@ -1,0 +1,13 @@
+{
+  "name": "flsocial",
+  "private": true,
+  "version": "1.0.0",
+  "description": "FLsocial - social web app with login/register auth",
+  "scripts": {
+    "dev:frontend": "pnpm --dir frontend dev",
+    "dev:backend": "pnpm --dir backend start",
+    "build:frontend": "pnpm --dir frontend build",
+    "install:all": "pnpm --dir frontend install && pnpm --dir backend install"
+  },
+  "packageManager": "pnpm@10.17.1"
+}

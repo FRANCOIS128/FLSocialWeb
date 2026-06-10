@@ -1,0 +1,45 @@
+/* --- Nav --- */
+:root {
+  --nav-background-color: rgba(255, 255, 255, 0.85);
+  --nav-backdrop-filter: blur(12px);
+  --nav-border: 1px solid rgba(255, 255, 255, 0.2);
+  --nav-shadow: 0 8px 32px rgba(99, 102, 241, 0.1);
+}
+
+
+nav {
+  display: block;
+  position: fixed;
+  z-index: 999;
+
+  width: 100%;
+  top: 0;
+  padding: 0.7rem 0;
+  background: var(--nav-background-color);
+  backdrop-filter: var(--nav-backdrop-filter);
+  -webkit-backdrop-filter: var(--nav-backdrop-filter);
+  border-bottom: var(--nav-border);
+  box-shadow: var(--nav-shadow);
+}
+
+nav .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav .container .logo {
+  text-transform: uppercase;
+  font-family: "Comfortaa", cursive;
+  color: var(--color-primary);
+  font-weight: 600;
+  font-size: 1.2rem;
+  text-shadow: 0 2px 4px rgba(99, 102, 241, 0.1);
+}
+
+nav .container .create {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}

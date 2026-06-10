@@ -1,0 +1,47 @@
+:root {
+  --main-middle-post-background-color: #fff;
+  --main-middle-post-padding: 1rem;
+  --main-middle-post-radius: 2rem;
+  --main-middle-margin: 1rem;
+  --main-middle-btn-padding: 0.4rem 1.5rem;
+}
+
+/* --- Main Middle Post --- */
+
+.main-middle .create-post {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: var(--main-middle-margin);
+  background: var(--main-middle-post-background-color);
+  padding: 0.4rem var(--main-middle-post-padding);
+  border-radius: var(--main-middle-post-radius);
+}
+
+.main-middle .create-post input[type="text"] {
+  justify-self: start;
+  width: 100%;
+  padding-left: var(--main-middle-post-padding);
+  margin-right: var(--main-middle-margin);
+}
+
+.main-middle .create-post input[type="text"]::placeholder {
+  color: var(--color-gray);
+  font-style: italic;
+}
+
+.main-middle .create-post .profile-photo {
+  width: 2.2rem;
+  min-width: 2.2rem;
+}
+
+.main-middle .create-post .btn {
+  display: inline-block;
+  padding: var(--main-middle-btn-padding);
+  font-weight: 500;
+  border-radius: var(--btn-border-radius);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.8rem;
+}

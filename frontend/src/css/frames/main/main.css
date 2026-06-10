@@ -1,0 +1,17 @@
+/* --- Main --- */
+
+main {
+  position: relative;
+  top: 5.4rem;
+}
+
+main .container {
+  display: grid;
+  position: relative;
+  grid-template-columns: 18vw auto 20vw;
+  column-gap: 2rem;
+}
+
+/* main .container > * {
+  border: 1px solid #000;
+} */

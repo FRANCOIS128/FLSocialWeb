@@ -1,0 +1,11 @@
+/* --- Main Right --- */
+
+.main-right {
+  position: sticky;
+  top: 5.4rem;
+  height: calc(100vh - 5.4rem);
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}

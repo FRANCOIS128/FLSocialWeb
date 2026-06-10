@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
+  <title>FLsocial</title>
+</head>
+
+<body>
+  <!-- Auth (Login / Register) -->
+  <div id="auth">
+    <!-- Login -->
+    <div class="auth-panel login">
+      <div class="auth-card">
+        <div class="auth-logo">FLsocial</div>
+        <h2>Welcome Back</h2>
+        <div class="auth-fields">
+          <div class="auth-field">
+            <label for="username">Username</label>
+            <input type="text" id="username" autocomplete="username" placeholder="Enter your username">
+          </div>
+          <div class="auth-field">
+            <label for="password">Password</label>
+            <input type="password" id="password" autocomplete="current-password" placeholder="Enter your password">
+          </div>
+        </div>
+        <span class="btn btn-primary auth-submit login-btn">Sign In</span>
+        <div class="auth-switch">
+          Don't have an account?
+          <span class="to-register-btn">Sign Up</span>
+        </div>
+      </div>
+    </div>
+    <!-- Register -->
+    <div class="auth-panel register">
+      <div class="auth-card">
+        <div class="auth-logo">FLsocial</div>
+        <h2>Create Account</h2>
+        <div class="auth-fields">
+          <div class="auth-field">
+            <label for="new-username">Username</label>
+            <input type="text" id="new-username" autocomplete="username" placeholder="Choose a username">
+          </div>
+          <div class="auth-field">
+            <label for="reg-password-one">Password</label>
+            <input type="password" id="reg-password-one" autocomplete="new-password" placeholder="Choose a password">
+          </div>
+          <div class="auth-field">
+            <label for="reg-password-two">Confirm Password</label>
+            <input type="password" id="reg-password-two" autocomplete="new-password" placeholder="Repeat your password">
+          </div>
+        </div>
+        <span class="btn btn-primary auth-submit register-btn">Sign Up</span>
+        <div class="auth-switch">
+          Already have an account?
+          <span class="to-login-btn">Sign In</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Nav Bar -->
+  <nav>
+    <div class="container">
+      <!-- logo -->
+      <div class="logo"></div>
+      <!-- Search Bar -->
+      <div class="search-bar">
+        <i class="uil uil-search-alt"></i>
+        <input type="search" name="navbar-search" id="navbar-search" placeholder="Search for Creators">
+      </div>
+      <!-- Create -->
+      <div class="create">
+        <!-- Button -->
+        <label for="create-post" class="btn btn-primary">Create</label>
+        <!-- Image -->
+        <div class="profile-photo">
+          <img alt="profile photo">
+        </div>
+        <!-- User / Sign Out -->
+        <span id="nav-username"></span>
+        <span id="sign-out" class="btn btn-cancel">Sign Out</span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main -->
+  <main>
+    <div class="container">
+      <!-- Main Left -->
+      <div class="main-left"></div>
+      <!-- Main Middle -->
+      <div class="main-middle"></div>
+      <!-- Main Right -->
+      <div class="main-right"></div>
+    </div>
+  </main>
+  <script type="module" src="/index.js"></script>
+</body>
+
+</html>
