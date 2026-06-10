@@ -1,23 +1,26 @@
+/* --- Responsive Layout --- */
+
 @media (1000px <= width <= 1200px) {
   .main-left {
     display: none;
   }
 
   main .container {
-    grid-template-columns: auto 30vw;
+    grid-template-columns: minmax(0, 1fr) minmax(220px, 30vw);
   }
 }
 
 @media (width < 1000px) {
-  .main-left {
-    display: none;
-  }
-
+  .main-left,
   .main-right {
     display: none;
   }
 
   main .container {
-    grid-template-columns: auto;
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .container {
+    width: 92%;
   }
 }

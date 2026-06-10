@@ -8,7 +8,8 @@ main {
 main .container {
   display: grid;
   position: relative;
-  grid-template-columns: 18vw auto 20vw;
+  /* minmax 防止列内容溢出轨道导致重叠 */
+  grid-template-columns: minmax(200px, 18vw) minmax(0, 1fr) minmax(220px, 20vw);
   column-gap: 2rem;
 }
 
