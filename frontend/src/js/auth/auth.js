@@ -1,14 +1,13 @@
-import axios from "axios";
 import * as dom from "./dom.js";
 import { clearDomValue, isInputHasContent } from "./utils.js";
 import * as animation from "./animation.js";
+import { authApi, tokenStore } from "@/js/api.js";
+import { enterFeed } from "@/js/feed.js";
 
-const backendPath = import.meta.env.VITE_BACKEND_PATH;
-const loginToken = import.meta.env.VITE_LOGIN_TOKEN;
-
-function enterApp(username) {
-  dom.navUsername.innerText = username;
+function enterApp(user) {
+  dom.navUsername.innerText = user.displayName || user.username;
   animation.AuthToApp();
+  enterFeed(user);
 }
 
 async function login(event) {
@@ -19,19 +18,13 @@ async function login(event) {
   }
 
   try {
-    const response = await axios.post(
-      `${backendPath}/api/login`,
-      {
-        username: dom.username.value,
-        password: dom.password.value
-      }
-    ).then(res => res.data);
+    const response = await authApi.login(dom.username.value, dom.password.value);
 
     if (response.code === "0") {
       clearDomValue([dom.username, dom.password]);
       animation.showCorrect();
-      response.token && localStorage.setItem(loginToken, response.token);
-      enterApp(response.username);
+      tokenStore.set(response.token);
+      enterApp(response.user);
     }
   } catch (error) {
     const code = error?.response?.data?.code;
@@ -61,13 +54,10 @@ async function register(event) {
   }
 
   try {
-    const response = await axios.post(
-      `${backendPath}/api/register`,
-      {
-        username: dom.new_username.value,
-        password: dom.password_one.value,
-      }
-    ).then(res => res.data);
+    const response = await authApi.register(
+      dom.new_username.value,
+      dom.password_one.value
+    );
 
     if (response.code === "0") {
       clearDomValue([
@@ -102,32 +92,22 @@ function signOut(event) {
     dom.password_two
   ]);
   dom.navUsername.innerText = "";
-  localStorage.removeItem(loginToken);
+  tokenStore.clear();
   animation.AppToAuth();
 }
 
 // 页面加载时用本地 token 自动登录
 async function checkToken() {
-  const token = localStorage.getItem(loginToken);
+  const token = tokenStore.get();
   if (!token) return;
 
   try {
-    const response = await axios.post(
-      `${backendPath}/api/login`,
-      { message: "token" },
-      {
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
-      }
-    ).then(res => res.data);
-
+    const response = await authApi.me();
     if (response.code === "0") {
-      response.token && localStorage.setItem(loginToken, response.token);
-      enterApp(response.username);
+      enterApp(response.user);
     }
   } catch (error) {
-    localStorage.removeItem(loginToken);
+    tokenStore.clear();
   }
 }
 

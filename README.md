@@ -1,51 +1,111 @@
 # FLsocial
 
-A social web app with a login/register authentication backend.
+A full-stack social media web app — register, log in, publish posts, and like other people's posts in a real-time feed. Built from scratch with a vanilla-JS component frontend and an Express + Prisma + JWT backend.
 
-## Project Structure
+![Tech](https://img.shields.io/badge/Frontend-Vite%20%2B%20Vanilla%20JS-646CFF)
+![Tech](https://img.shields.io/badge/Backend-Express%20%2B%20Prisma-3178C6)
+![Tech](https://img.shields.io/badge/Auth-JWT%20%2B%20bcrypt-orange)
+![DB](https://img.shields.io/badge/DB-SQLite-blue)
+
+> **Live demo:** _add your deployed URL here_
+> **Demo account:** `demo` / `demo123`
+
+<!-- Add a screenshot or GIF of the app here — it's the single highest-impact thing for a portfolio README:
+![FLsocial screenshot](./docs/screenshot.png)
+-->
+
+## Features
+
+- **Authentication** — register & log in; passwords hashed with bcrypt, never stored or transmitted in plain text.
+- **Persistent sessions** — JWT stored client-side; on refresh the app auto-restores the session via `GET /api/me`.
+- **Real posts** — create a post and it is persisted to the database; the feed is loaded from the backend (no mock data).
+- **Likes** — like / unlike any post; counts update optimistically and are persisted per-user (one like per user per post).
+- **Hardened backend** — Helmet security headers, rate limiting on auth routes, input validation, and centralized Prisma error handling.
+- **Responsive UI** — three-column social layout with collapsible side panels on narrow screens.
+
+## Tech Stack
+
+| Layer    | Technology                                            |
+| -------- | ----------------------------------------------------- |
+| Frontend | Vite, Vanilla JS (ES modules, class components), Axios, GSAP |
+| Backend  | Node.js, Express                                      |
+| Database | SQLite via Prisma ORM                                 |
+| Auth     | JWT (`jsonwebtoken`) + bcrypt (`bcryptjs`)            |
+| Security | Helmet, express-rate-limit                            |
+
+## Architecture
 
 ```
 FLSocialWeb/
-├── frontend/          # Frontend (Vite + vanilla JS)
-│   ├── index.html     # Entry page (includes login/register UI)
-│   ├── index.js       # Entry script
-│   ├── src/
-│   │   ├── js/
-│   │   │   ├── auth/        # Login / register / sign-out / token check logic
-│   │   │   └── components/  # Page components
-│   │   └── css/             # Styles
-│   ├── data/          # Mock page data (db.json)
-│   └── .env           # Backend URL and token key config
-└── backend/           # Backend (Express + Prisma + JWT)
-    ├── index.js       # Server entry (port 9090)
-    ├── src/
-    │   ├── api/       # /api/login, /api/register
-    │   └── utils/     # Encryption, token generation/verification
-    ├── prisma/        # Database schema (SQLite)
-    └── .env           # Database URL and token secret
+├── frontend/                 # Vite + vanilla JS
+│   ├── index.html
+│   ├── index.js              # App bootstrap (builds layout, inits auth)
+│   └── src/
+│       ├── js/
+│       │   ├── api.js        # Axios instance + token injection + API calls
+│       │   ├── feed.js       # Load feed, submit posts, apply current user
+│       │   ├── auth/         # Login / register / session-restore logic
+│       │   ├── components/   # Profile, sidebar, feed cards, etc.
+│       │   └── utils.js      # timeAgo / escapeHtml helpers
+│       └── css/
+└── backend/                  # Express + Prisma + JWT
+    ├── index.js              # Server entry, middleware & routes (port 9090)
+    ├── prisma/schema.prisma  # User / Post / Like models
+    └── src/
+        ├── api/              # login, register, me, posts
+        ├── utils/            # auth middleware, token, hashing, validation
+        ├── lib/prisma.js     # Prisma client singleton
+        └── seed.js           # Demo users + posts
 ```
+
+**Request flow:** Frontend (`api.js`) attaches `Authorization: Bearer <jwt>` → Express route → `requireAuth` / `optionalAuth` middleware verifies the token and sets `req.user` → controller talks to the DB via Prisma → JSON response.
+
+## API Reference
+
+| Method | Endpoint               | Auth      | Description                          |
+| ------ | ---------------------- | --------- | ------------------------------------ |
+| POST   | `/api/register`        | –         | Create an account                    |
+| POST   | `/api/login`           | –         | Log in, returns a JWT + user         |
+| GET    | `/api/me`              | required  | Current user (used for auto-login)   |
+| GET    | `/api/posts`           | optional  | Feed (adds `likedByMe` when logged in) |
+| POST   | `/api/posts`           | required  | Create a post                        |
+| POST   | `/api/posts/:id/like`  | required  | Toggle like on a post                |
+| GET    | `/health`              | –         | Health check                         |
 
 ## Getting Started
 
-Create the env files from the templates, then install dependencies:
+Create the env files from the templates and install dependencies:
 
 ```bash
 cp frontend/.env.example frontend/.env
 cp backend/.env.example backend/.env
 
 pnpm install:all
-pnpm --dir backend exec prisma db push   # create the local SQLite database
+pnpm db:setup        # create the SQLite DB schema + seed demo data
 ```
 
-Start the backend and frontend (in two terminals):
+Start the backend and frontend in two terminals:
 
 ```bash
-pnpm dev:backend    # Backend at http://localhost:9090
-pnpm dev:frontend   # Frontend at http://localhost:5173
+pnpm dev:backend     # Backend at http://localhost:9090
+pnpm dev:frontend    # Frontend at http://localhost:5173
 ```
 
-## Features
+Open http://localhost:5173 and log in with `demo` / `demo123`, or register a new account.
 
-- Register / login (passwords hashed with bcrypt, stored in a local SQLite database)
-- Persistent login via JWT token, auto-login on page refresh
-- After login, the social feed is revealed; the navbar shows the username and a sign-out button
+## Security Notes
+
+- Passwords are hashed with bcrypt; the configurable cost factor lives in `SALT_ROUNDS`.
+- JWTs carry **only** a user id and username — never the password or its hash.
+- Protected routes are guarded by a `requireAuth` middleware; the public feed uses `optionalAuth` to personalize results without requiring a login.
+- Auth routes are rate-limited and all credentials are validated server-side.
+- User-generated content is HTML-escaped on render to mitigate XSS.
+
+## Deployment
+
+- **Backend** (Render / Railway / Fly.io): set `ACCESS_TOKEN_SECRET`, `DATABASE_URL`, and `CORS_ORIGIN` (your frontend URL); run `prisma db push` (and optionally `seed`) on deploy. For production, switching `DATABASE_URL` to PostgreSQL is recommended.
+- **Frontend** (Vercel / Netlify): set `VITE_BACKEND_PATH` to the deployed backend URL, then `pnpm build:frontend`.
+
+## Possible Next Steps
+
+Comments, follow/friend system, real-time messaging (WebSocket), image uploads, and dark-mode theming.

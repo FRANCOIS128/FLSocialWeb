@@ -1,5 +1,7 @@
 import express from 'express';
 import cors from 'cors';
+import helmet from 'helmet';
+import rateLimit from 'express-rate-limit';
 import bodyParser from 'body-parser';
 import dotenv from 'dotenv';
 import { Prisma } from '@prisma/client';
@@ -7,21 +9,42 @@ dotenv.config();
 
 import { login } from './src/api/login.js';
 import { register } from './src/api/register.js';
-import { authToken } from './src/utils/authToken.js';
+import { me } from './src/api/me.js';
+import { getFeed, createPost, toggleLike } from './src/api/posts.js';
+import { requireAuth, optionalAuth } from './src/utils/authToken.js';
 
 const app = express();
 
-app.use(cors());
-app.use(bodyParser.json())
+app.use(helmet());
+// 生产环境通过 CORS_ORIGIN 限定来源；未设置时允许所有来源（便于本地开发）
+const corsOrigin = process.env.CORS_ORIGIN
+  ? process.env.CORS_ORIGIN.split(",").map((o) => o.trim())
+  : "*";
+app.use(cors({ origin: corsOrigin }));
+app.use(bodyParser.json());
+
+// 对认证接口做频率限制，缓解暴力破解
+const authLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 50,
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: { message: "Too many requests, please try again later", code: "5" }
+});
 
 app.get("/health", (req, res) => {
-  res.status(200).json({
-    message: "OK"
-  })
-})
+  res.status(200).json({ message: "OK" });
+});
 
-app.post("/api/login", authToken, login);
-app.post("/api/register", register);
+// Auth
+app.post("/api/login", authLimiter, login);
+app.post("/api/register", authLimiter, register);
+app.get("/api/me", requireAuth, me);
+
+// Posts
+app.get("/api/posts", optionalAuth, getFeed);
+app.post("/api/posts", requireAuth, createPost);
+app.post("/api/posts/:id/like", requireAuth, toggleLike);
 
 // Prisma 错误处理中间件
 app.use((err, req, res, next) => {
@@ -60,4 +83,4 @@ app.use((err, req, res, next) => {
 const port = process.env.PORT || 9090;
 app.listen(port, () => {
   console.log(`服务器运行在 http://localhost:${port}`);
-})
+});

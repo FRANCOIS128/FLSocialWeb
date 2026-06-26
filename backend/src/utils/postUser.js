@@ -2,16 +2,17 @@ import prisma from '../lib/prisma.js'
 
 async function postUser(user) {
   try {
-    const newUser = await prisma.user.create({
+    return await prisma.user.create({
       data: {
         username: user.username,
         password: user.password,
+        displayName: user.displayName,
+        avatar: user.avatar
       }
-    })
-    return newUser
+    });
   } catch (error) {
-    console.log("postUser error: ", error)
-    throw error
+    console.log("postUser error: ", error);
+    throw error;
   }
 }
 

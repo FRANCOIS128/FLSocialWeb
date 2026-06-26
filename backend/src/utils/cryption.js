@@ -1,18 +1,10 @@
 import bcrypt from "bcryptjs";
-import prisma from "../lib/prisma.js";
+
+const SALT_ROUNDS = Number(process.env.SALT_ROUNDS) || 10;
 
 async function encryption(password) {
   try {
-    // 从数据库获取 saltRounds
-    const bcryptConfig = await prisma.bcrypt.findUnique({
-      where: {
-        id: "1"
-      }
-    });
-
-    const saltRounds = bcryptConfig?.saltRounds || 10;
-    // 使用 bcrypt 进行加密
-    const hashedPassword = await bcrypt.hash(password, saltRounds);
+    const hashedPassword = await bcrypt.hash(password, SALT_ROUNDS);
     return hashedPassword;
   } catch (error) {
     console.log("密码加密失败: ", error);

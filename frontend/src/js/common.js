@@ -34,7 +34,8 @@ export const left_sidebar_post = create_post()
 export const middle = main_container.querySelector('.main-middle');
 export const middle_highline = new Highline(data.highline).dom;
 export const middle_create_post = create_simple_post(data.profile)
-export const middle_cardList = new CardList(data.cards).dom;
+export const cardList = new CardList();
+export const middle_cardList = cardList.dom;
 
 
 /* --- Main Right --- */

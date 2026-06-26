@@ -1,12 +1,11 @@
 import jwt from "jsonwebtoken";
 import "dotenv/config";
 
-function genToken(info, expireTime = "1h") {
-  const newInfo = { ...info, date: new Date() }
-  const token = jwt.sign(newInfo, process.env.ACCESS_TOKEN_SECRET, {
+// 只在 token 中存放非敏感的标识信息（绝不放密码哈希）
+function genToken(payload, expireTime = "1d") {
+  return jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET, {
     expiresIn: expireTime
-  })
-  return token
+  });
 }
 
 export {

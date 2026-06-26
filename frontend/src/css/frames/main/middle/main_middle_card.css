@@ -74,3 +74,22 @@
 .view-btn:hover {
   color: var(--color-primary);
 }
+
+.info-control .main-control i.control_heart {
+  transition: transform 0.15s ease;
+}
+
+.info-control .main-control i.control_heart.liked::before {
+  color: #e0245e;
+}
+
+.info-control .main-control i.control_heart.liked {
+  transform: scale(1.15);
+}
+
+.feed-empty {
+  text-align: center;
+  color: var(--color-gray);
+  padding: 2rem 1rem;
+  font-size: 0.95rem;
+}

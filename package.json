@@ -7,7 +7,10 @@
     "dev:frontend": "pnpm --dir frontend dev",
     "dev:backend": "pnpm --dir backend start",
     "build:frontend": "pnpm --dir frontend build",
-    "install:all": "pnpm --dir frontend install && pnpm --dir backend install"
+    "install:all": "pnpm --dir frontend install && pnpm --dir backend install",
+    "db:push": "pnpm --dir backend exec prisma db push",
+    "db:seed": "pnpm --dir backend run seed",
+    "db:setup": "pnpm --dir backend exec prisma db push && pnpm --dir backend run seed"
   },
   "packageManager": "pnpm@10.17.1"
 }

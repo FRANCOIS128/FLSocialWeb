@@ -8,12 +8,40 @@ datasource db {
 }
 
 model User {
-  id       String @id @default(cuid())
-  username String @unique
-  password String
+  id          String   @id @default(cuid())
+  username    String   @unique
+  password    String
+  displayName String
+  avatar      String
+  bio         String?
+  createdAt   DateTime @default(now())
+
+  posts Post[]
+  likes Like[]
 }
 
-model Bcrypt {
-  id         String @id
-  saltRounds Int
+model Post {
+  id        String   @id @default(cuid())
+  content   String
+  imageUrl  String?
+  createdAt DateTime @default(now())
+
+  author   User   @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  authorId String
+
+  likes Like[]
+
+  @@index([createdAt])
+}
+
+model Like {
+  id     String @id @default(cuid())
+  post   Post   @relation(fields: [postId], references: [id], onDelete: Cascade)
+  postId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId String
+
+  createdAt DateTime @default(now())
+
+  @@unique([postId, userId])
 }
