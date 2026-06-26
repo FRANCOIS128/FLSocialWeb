@@ -10,9 +10,7 @@ A full-stack social media web app — register, log in, publish posts, and like 
 > **Live demo:** _add your deployed URL here_
 > **Demo account:** `demo` / `demo123`
 
-<!-- Add a screenshot or GIF of the app here — it's the single highest-impact thing for a portfolio README:
 ![FLsocial screenshot](./docs/screenshot.png)
--->
 
 ## Features
 
