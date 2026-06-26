@@ -5,7 +5,7 @@ A full-stack social media web app — register, log in, publish posts, and like 
 ![Tech](https://img.shields.io/badge/Frontend-Vite%20%2B%20Vanilla%20JS-646CFF)
 ![Tech](https://img.shields.io/badge/Backend-Express%20%2B%20Prisma-3178C6)
 ![Tech](https://img.shields.io/badge/Auth-JWT%20%2B%20bcrypt-orange)
-![DB](https://img.shields.io/badge/DB-SQLite-blue)
+![DB](https://img.shields.io/badge/DB-PostgreSQL-blue)
 
 > **Live demo:** _add your deployed URL here_
 > **Demo account:** `demo` / `demo123`
@@ -27,7 +27,7 @@ A full-stack social media web app — register, log in, publish posts, and like 
 | -------- | ----------------------------------------------------- |
 | Frontend | Vite, Vanilla JS (ES modules, class components), Axios, GSAP |
 | Backend  | Node.js, Express                                      |
-| Database | SQLite via Prisma ORM                                 |
+| Database | PostgreSQL via Prisma ORM (Neon)                      |
 | Auth     | JWT (`jsonwebtoken`) + bcrypt (`bcryptjs`)            |
 | Security | Helmet, express-rate-limit                            |
 
@@ -77,9 +77,11 @@ Create the env files from the templates and install dependencies:
 ```bash
 cp frontend/.env.example frontend/.env
 cp backend/.env.example backend/.env
+# Set DATABASE_URL in backend/.env to a PostgreSQL connection string
+# (a free Neon database works for both local dev and production)
 
 pnpm install:all
-pnpm db:setup        # create the SQLite DB schema + seed demo data
+pnpm db:setup        # push the schema to the DB + seed demo data
 ```
 
 Start the backend and frontend in two terminals:
@@ -101,8 +103,23 @@ Open http://localhost:5173 and log in with `demo` / `demo123`, or register a new
 
 ## Deployment
 
-- **Backend** (Render / Railway / Fly.io): set `ACCESS_TOKEN_SECRET`, `DATABASE_URL`, and `CORS_ORIGIN` (your frontend URL); run `prisma db push` (and optionally `seed`) on deploy. For production, switching `DATABASE_URL` to PostgreSQL is recommended.
-- **Frontend** (Vercel / Netlify): set `VITE_BACKEND_PATH` to the deployed backend URL, then `pnpm build:frontend`.
+Deployed for free with **Neon** (PostgreSQL) + **Render** (backend) + **Vercel** (frontend).
+
+**1. Database — Neon**
+- Create a free project at [neon.tech](https://neon.tech) and copy the connection string (with `?sslmode=require`).
+
+**2. Backend — Render**
+- New → Blueprint, point it at this repo (a `render.yaml` is included), or create a Web Service manually with:
+  - Root directory: `backend`
+  - Build: `corepack enable && pnpm install && npx prisma generate && npx prisma db push`
+  - Start: `node index.js`
+- Set env vars: `DATABASE_URL` (Neon string), `ACCESS_TOKEN_SECRET` (random), `CORS_ORIGIN` (your Vercel URL).
+- Optionally run `pnpm seed` once from the Render shell to load demo data.
+
+**3. Frontend — Vercel**
+- New Project → import this repo, set **Root Directory** to `frontend`.
+- Env vars: `VITE_BACKEND_PATH` = your Render backend URL, `VITE_LOGIN_TOKEN` = any key name (e.g. `login_token`).
+- Deploy, then put the live URL at the top of this README and in Render's `CORS_ORIGIN`.
 
 ## Possible Next Steps
 

@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: flsocial-backend
+    runtime: node
+    plan: free
+    rootDir: backend
+    buildCommand: corepack enable && pnpm install && npx prisma generate && npx prisma db push
+    startCommand: node index.js
+    healthCheckPath: /health
+    envVars:
+      - key: ACCESS_TOKEN_SECRET
+        generateValue: true
+      - key: TOKEN_EXPIRES_IN
+        value: 1d
+      - key: SALT_ROUNDS
+        value: 10
+      # 在 Render 控制台手动填写（来自 Neon 的连接串）
+      - key: DATABASE_URL
+        sync: false
+      # 在 Render 控制台填写你的 Vercel 前端域名，例如 https://flsocial.vercel.app
+      - key: CORS_ORIGIN
+        sync: false

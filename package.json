@@ -5,7 +5,7 @@
   "description": "FLsocial - social web app with login/register auth",
   "scripts": {
     "dev:frontend": "pnpm --dir frontend dev",
-    "dev:backend": "pnpm --dir backend start",
+    "dev:backend": "pnpm --dir backend dev",
     "build:frontend": "pnpm --dir frontend build",
     "install:all": "pnpm --dir frontend install && pnpm --dir backend install",
     "db:push": "pnpm --dir backend exec prisma db push",
