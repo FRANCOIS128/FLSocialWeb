@@ -92,6 +92,28 @@
   box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.12);
 }
 
+.auth-message {
+  width: 100%;
+  min-height: 1.1rem;
+  margin: -0.6rem 0 -0.3rem;
+  font-size: 0.82rem;
+  text-align: center;
+  opacity: 0;
+  transition: opacity 200ms ease;
+}
+
+.auth-message.show {
+  opacity: 1;
+}
+
+.auth-message.error {
+  color: #e0245e;
+}
+
+.auth-message.success {
+  color: #1a9d56;
+}
+
 .auth-submit {
   width: 100%;
   text-align: center;
