@@ -111,7 +111,7 @@ Deployed for free with **Neon** (PostgreSQL) + **Render** (backend) + **Vercel**
 **2. Backend — Render**
 - New → Blueprint, point it at this repo (a `render.yaml` is included), or create a Web Service manually with:
   - Root directory: `backend`
-  - Build: `corepack enable && pnpm install && npx prisma generate && npx prisma db push`
+  - Build: `npm install && npx prisma generate && npx prisma db push`
   - Start: `node index.js`
 - Set env vars: `DATABASE_URL` (Neon string), `ACCESS_TOKEN_SECRET` (random), `CORS_ORIGIN` (your Vercel URL).
 - Optionally run `pnpm seed` once from the Render shell to load demo data.
