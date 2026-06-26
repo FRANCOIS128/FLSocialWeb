@@ -7,8 +7,10 @@ A full-stack social media web app — register, log in, publish posts, and like 
 ![Tech](https://img.shields.io/badge/Auth-JWT%20%2B%20bcrypt-orange)
 ![DB](https://img.shields.io/badge/DB-PostgreSQL-blue)
 
-> **Live demo:** _add your deployed URL here_
+> **Live demo:** https://fl-social-web.vercel.app
 > **Demo account:** `demo` / `demo123`
+>
+> _Note: the backend runs on a free tier and sleeps after inactivity — the first request may take ~50s to wake up._
 
 ![FLsocial screenshot](./docs/screenshot.png)
 
